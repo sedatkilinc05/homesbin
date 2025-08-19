@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_listDownload-csv () {
+	cat ${BINTMP}/2download.csv
+}
+_listDownload-csv ${@}

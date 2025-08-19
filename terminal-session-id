@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_termnial-session-id () {
+	echo $TERM_SESSION_ID
+}
+_termnial-session-id ${@}

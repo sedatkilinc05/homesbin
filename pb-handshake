@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_pb-handshake () {
-	handshake ${@} | pbcopy
-}
-_pb-handshake ${@}
+.pb-generic

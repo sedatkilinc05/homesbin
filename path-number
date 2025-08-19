@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_path-number () {
+	echo $ARRPATH[${1}]
+}
+_path-number ${@}

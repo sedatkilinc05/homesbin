@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+[[ -z ${CHECKSUMS_FOLDER} ]] && CHECKSUMS_FOLDER="${HOME}/.checksums"
+mkdir -p "${CHECKSUMS_FOLDER}"
+
+[[ ${#1} -eq 0 ]] && . retexit 9
+
+_terminal-update-checksum () {
+    TERMSESSION_ID=${2:-${TERM_SESSION_ID}}
+
+    PATH_2_CHECKSUM_FILE=$(path2string "${1}")
+
+    PATH_2_CHECKSUM_PATH="${CHECKSUMS_FOLDER}/${TERMSESSION_ID}•${PATH_2_CHECKSUM_FILE}"
+
+	shasum -a 512 "${1}" > "${PATH_2_CHECKSUM_PATH}"
+}
+_terminal-update-checksum ${@}

@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+
+_list-elements () {
+	ELEMENTS="${1// /}" 
+	for i in {1..${#ELEMENTS}}
+	do
+		TMP_EL="${ELEMENTS[${i}]}" 
+		echo "${i} ${TMP_EL}"
+	done
+}
+_list-elements ${@}

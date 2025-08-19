@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+OPTS=''
+startsWithDash ${1} && OPTS="${1}" && shift
+
+_handshake-flag () {
+	handshake ${OPTS} $(flag ${1}) $(flag ${2})
+}
+_handshake-flag ${@}

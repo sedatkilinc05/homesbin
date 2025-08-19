@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+[[ ${#1} -eq 0 ]] && . retexit 9
+_update-needed () {
+	CHECKSUM_OLD="$(shasum -a 512 "${1}")" 
+    PATH_2_CHECKSUM_FILE="${CHECKSUMS_FOLDER}/$(path2string "${1}")"
+	CHECKSUM_CURRENT=''
+    [[ -r "${PATH_2_CHECKSUM_FILE}" ]] && CHECKSUM_CURRENT="$(cat ${PATH_2_CHECKSUM_FILE})" 
+	
+    echo "\nCHECKSUM_OLD\t ${CHECKSUM_OLD}" >> "${TMPDIR}/debug-"
+	echo "CHECKSUM_CURRENT\t ${CHECKSUM_CURRENT}" >> "${TMPDIR}/debug-"
+	
+    [[ "${CHECKSUM_OLD}" != "${CHECKSUM_CURRENT}" ]]
+}
+_update-needed ${@}

@@ -12,6 +12,6 @@
 
 NEWPATH=${PWD}
 
-[[ -n ${1} ]] && NEWPATH=${1}
+[[ ${#} -gt 0 ]] && NEWPATH=${1}
 
 export PATH=${NEWPATH}:${PATH}

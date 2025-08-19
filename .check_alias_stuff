@@ -1,6 +1,8 @@
 #!/bin/zsh
 
-export CHECKOCCURENCES=CHECKOCCURENCES
+debug-current-script "${0}" "" 2> /dev/null
+
+export CHECK_OCCURRENCES='CHECK_OCCURRENCES'
 
 add_ls() {
     echo $0
@@ -15,11 +17,4 @@ showshit () {
     done
 }
 
-#echo "-----"
-#add_ls "$(alias l)"
-#add_ls "$(alias ll)"
-#add_ls "$(alias lll)"
-
-#showshit
-
-#echo "---------------------------"
+debug-current-script "" "${0}" 2> /dev/null

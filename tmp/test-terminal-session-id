@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+_string-terminal-session-id() {
+    terminal-session-id
+}
+
+_string-terminal-session-id ${@}

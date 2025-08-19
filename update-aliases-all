@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+. update-aliases
+. update-aliases-underscore
+. update-aliases-addlink
+. update-aliases-accounts
+. update-aliases-ext

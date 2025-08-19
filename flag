@@ -11,7 +11,7 @@ _flag () {
         local CC=$(uppercase ${flag}) 
         [[ ${CC[1]} =~ '[A-Z]' ]] && [[ ${#CC} -eq 2 ]] || source retexit 69
         [[ ${CC[2]} =~ '[A-Z]' ]] && [[ ${#CC} -eq 2 ]] || source retexit 69
-        eval "echo ${OPTS} \"\${UC_${CC[1]}}\${UC_${CC[2]}} \""
+        eval "echo ${OPTS} \"\${UC_${CC[1]}}\${UC_${CC[2]}}\""
     done
 }
 _flag ${@}

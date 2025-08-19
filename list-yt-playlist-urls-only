@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_list-yt-playlist-urls-only () {
+	cat "${1}" | grep --color=auto -e '.*playlist.*'
+}
+_list-yt-playlist-urls-only ${@}

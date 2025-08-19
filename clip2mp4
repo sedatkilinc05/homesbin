@@ -6,6 +6,15 @@ IN="$1"
 EXT=$(fileext "$IN")
 TO_TYPE=mp4
 [[ -n "$2" ]] && TO_TYPE="$2"
-OUT=${IN//$EXT/$TO_TYPE}
+#OUT=${IN//$EXT/$TO_TYPE}
+OUT="$(fileroot "${1}").${2:-mp4}"
 
-ffmpeg -fflags +genpts -i "$IN" -r 24 "$OUT"
+ecko " ➭ ${OUT} " 17 214
+
+CMD="ffmpeg -fflags +genpts -i \"${IN}\" -r 24 \"${OUT}\""
+
+ecko " ➭ ${CMD} " 17 214
+
+#$(echo ${CMD})
+eval "${CMD}"
+

@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_char-arrow-inwards () {
+	echo "${ARROWR[${2:-1}]} ${1} ${ARROWL[-${2:-1}]}"
+}
+_char-arrow-inwards ${@}

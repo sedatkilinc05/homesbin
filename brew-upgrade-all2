@@ -4,7 +4,7 @@ PREVIOUS_CSV=false
 REVERSE_ORDER=false
 DRY_RUN=false
 
-if startsWithDash ${1}
+if [[ ${#} -gt 0 ]] && startsWithDash ${1}
 then 
 	[ ${1/-/} = 'n' -o ${1/-/} = '-new' ] && ecko -n " ${TURK} " && memsave -s && memread && shift
 	[ ${1/-/} = 'p' -o ${1/-/} = '-previous-csv' ] && ecko " \\U1f449\\U1f3fd Previous CSV" && PREVIOUS_CSV=true && shift

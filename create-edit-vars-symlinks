@@ -1,0 +1,11 @@
+#!/bin/zsh
+
+
+_create-edit-vars-symlinks () {
+	for v in $(cat ${SHELL_VARS} | grep -o 'SHELL_VARS_[_A-Z]*=')
+	do
+		SYMLINK=$(echo "edit-vars-${v[12,-2]//_/-}" | tr '[:upper:]' '[:lower:]') 
+		ln -s .generic-edit-vars $BIN/${SYMLINK} 2> /dev/null
+	done
+}
+_create-edit-vars-symlinks ${@}

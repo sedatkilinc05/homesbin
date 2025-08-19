@@ -4,21 +4,28 @@ source ${HOME}/.debug_state
 
 isDebug && echo "DEBUG ON"
 
-if [[ -z "${BREW_TEMP}" ]]
+if [[ -z "${OUTPUT_BREW}" ]]
 then
-    export BREW_TEMP="${HOME}/tmp/brew_output"
+    message-output "…sourcing…"
+    source update-vars-output
 fi
-mkdir -p "${BREW_TEMP}"
+
+message-output "OUTPUT_BREW = ${OUTPUT_BREW}"
+mkdir -p "${OUTPUT_BREW}"
 
 TIMESTAMP="$(date +%s)"
 
-BREWCOMMAND="${1}"
-shift
+BREW_FILE="${OUTPUT_BREW}/brew.${@}_${TIMESTAMP}.txt"
+BREW_FILE="${BREW_FILE// /.}"
 
-BREW_FILE="${BREW_TEMP}/brew.${BREWCOMMAND}.${@}_${TIMESTAMP}.txt"
-BREW_FILE="${BREW_FILE// /_}"
-    
-isDebug && echo "\$TIMESTAMP = $TIMESTAMP\n\${BREW_FILE} = ${BREW_FILE}\n\${BREW_TEMP} = ${BREW_TEMP}"
+isDebug && echo "TIMESTAMP = ${TIMESTAMP}\nBREW_FILE = ${BREW_FILE}\nOUTPUT_BREW = ${OUTPUT_BREW}"
 
-brew "${BREWCOMMAND}" "${@}" --verbose --debug | tee "${BREW_FILE}"
+brew "${@}" --verbose | tee "${BREW_FILE}"
 
+NOTINSTALLED=$(cat "${BREW_FILE}" | grep -i 'not installed')
+[[ -n ${NOTINSTALLED} ]] && echo "\t Not installed" || echo "\t already installed"
+if [[ "${@}" == *"info"* ]] && [[ -n ${NOTINSTALLED} ]]
+then
+    CMD="${@}"
+    echo -n "$(filename "${0}") ${CMD/info/install}" | pbcopy
+fi

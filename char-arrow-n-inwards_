@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+
+_char-arrow-left-right-n () {
+	[[ ${#@} > 1 ]] && LINES=$((${2}*2-1)) 
+	N=${#ARROWL_} 
+	for x in {1..${LINES:-${N}}..2}
+	do
+        if [[ ${x} -gt ${N} ]] 
+        then
+            break 
+        else
+            echo "${ARROWR_[${x}]} ${1} ${ARROWL_[-${x}]}"
+        fi
+	done
+}
+_char-arrow-left-right-n ${@}

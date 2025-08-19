@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+
+_isEqualX () {
+	ARG_1=${1} 
+	shift
+	for TMP_PARAM in ${@}
+	do
+		[[ ${TMP_PARAM} = ${ARG_1} ]] || return
+	done
+	true
+}
+_isEqualX ${@}

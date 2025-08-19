@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_list-yt-video-urls-strip-playlist-params () {
+	list-yt-video-urls-only "${1}" | sed -e "s/&list.*$//g"
+}
+_list-yt-video-urls-strip-playlist-params ${@}

@@ -1,0 +1,2 @@
+
+$SHELL $BINTMP/test-tsi

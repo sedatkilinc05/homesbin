@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+
+__list_user_groups () {
+	[[ -z ${IFS_PREV} ]] && IFS_PREV=() 
+	IFS_PREV+=${IFS} 
+	IFS=${DELIMITER_ENDL} 
+	listit $(groups $1) $" "
+	IFS_PREV=() 
+	IFS=${IFS_ORIG} 
+}
+__list_user_groups ${@}

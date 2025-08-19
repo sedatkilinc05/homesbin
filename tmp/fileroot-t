@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+#echo $1 | rev  | cut -d '.' -f2  | rev # didn't work with filename with dots in it
+
+source ~/bin/.functions
+FULL=false
+
+[[ ${#} -gt 0 ]] &&  startsWithDash ${1} && [ ${1/-/} = 'f' -o ${1/-/} = '-full' ] && FULL=true && shift
+
+if [[ ${#} -gt 0 ]]
+then
+    ARR_FILEPATH=("${1}")
+else
+    INPUT_PIPE="$(cat < /dev/stdin)"
+    [[ -n ${INPUT_PIPE} ]] && ARR_FILEPATH=($(echo ${INPUT_PIPE}))
+fi
+
+
+for FILEPATH in ${ARR_FILEPATH}
+do
+    if ${FULL}
+    then
+        FILEROOT=$(echo ${FILEPATH} | sed -E "s/${REGEX_FILEROOT_NO_PATH_NO_EXT}//g") 
+    else
+        FILENAME=$(filename ${FILEPATH})
+        FILEEXT=$(fileext "$FILENAME")
+
+        isDebug && echo "FILENAME = $FILENAME"
+        isDebug && echo "FILEEXT = $FILEEXT"
+
+        FILEROOT=${FILENAME//\.$FILEEXT/}
+    fi
+    echo $FILEROOT
+done

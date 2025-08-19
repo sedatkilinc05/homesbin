@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_android-studio () {
+	open -a /Applications/Android\ Studio.app
+}
+_android-studio ${@}

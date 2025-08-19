@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+
+_clipboard2tmp () {
+	echo "$(pbpaste)
+### end ###" >> ${TMPDIR}/clipboard.txt
+}
+_clipboard2tmp ${@}

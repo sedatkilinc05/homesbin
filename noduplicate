@@ -1,4 +1,5 @@
-#!/usr/bin/php
+#!/opt/homebrew/bin/php
+
 <?php
 //print_r($argv);
 

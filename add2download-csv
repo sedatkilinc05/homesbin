@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_add2download-csv () {
+	pbpaste >> $BINTMP/2download.csv
+}
+_add2download-csv ${@}

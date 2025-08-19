@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+
+_getTmpClipboard () {
+	ARRCB=() 
+	ARRCB2=()
+    CNT=$(($(cat ${TMPDIR}/clipboard.txt | wc -l)))
+	for i in {2..${CNT}}
+	do
+        TMP_LINE=$(cat ${TMPDIR}/clipboard.txt | tail -n ${i}  | head -n 1)
+		#echo "${i} ${TMP_LINE}"
+        startsWith '### end ###' ${TMP_LINE} && break || ARRCB[$((${CNT}-${i}))]="${TMP_LINE}\n" 
+	done
+	echo $ARRCB
+}
+_getTmpClipboard ${@}

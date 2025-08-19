@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+[[ -z ${CHECKSUMS_FOLDER} ]] && CHECKSUMS_FOLDER="${HOME}/.checksums"
+mkdir -p "${CHECKSUMS_FOLDER}"
+
+_update-checksum () {
+	TARGET="${CHECKSUMS_FOLDER}/$(path2string ${1})" 
+	shasum -a 512 "${1}" > ${TARGET}
+}
+_update-checksum ${@}

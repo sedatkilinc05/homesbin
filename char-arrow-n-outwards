@@ -1,0 +1,17 @@
+#!/bin/zsh
+
+
+_char-arrow-n-outwards () {
+	[[ ${#@} > 1 ]] && ROWS=${2} 
+	N=${#ARROWL} 
+	for x in {1..${ROWS:-${N}}}
+	do
+        if [[ ${x} -gt ${N} ]] 
+        then
+            break 
+        else
+            char-arrow-outwards ${1} ${x}
+        fi
+	done
+}
+_char-arrow-n-outwards ${@}

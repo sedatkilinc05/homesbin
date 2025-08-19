@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+
+__such () {
+	SPATH="." 
+    QRY=${1}
+	if [[ -d "${2}" ]]
+    then
+        SPATH="${2}"
+    elif [[ -d "${1}" ]] 
+    then
+        SPATH="${1}" 
+        QRY=${2}
+    fi
+	
+    grep --color=auto -ril "${QRY}" "${SPATH}"
+}
+__such ${@}

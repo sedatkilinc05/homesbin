@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+. update-vars
+. update-vars-boxdrawings
+. update-vars-boxdrawings-utf
+. update-vars-const
+. update-vars-foldername
+. update-vars-output
+. update-vars-otool
+. update-vars-projects
+. update-vars-regex
+. update-vars-unicode-char
+. update-vars-ext

@@ -11,21 +11,19 @@ _update-aliases () {
 	else
 		CURR_SHELL_ALIASES="${SHELL_ALIASES}"
 	fi
+
+    echo -n "####\n• CURR_SHELL_ALIASES -> $CURR_SHELL_ALIASES " >> "${TMPDIR}/debug-${}"
+
 	[[ -r "${CURR_SHELL_ALIASES}" ]] || return 255
-	SZ_SHA512="$(sha512sum ${CURR_SHELL_ALIASES})"
-	PATH2SHA512="${TMPDIR}/$(filename ${CURR_SHELL_ALIASES//\./})-${TERM_SESSION_ID}"
-	SOURCING_NEEDED=false
-	if [[ -r "${PATH2SHA512}" ]]
-	then
-		CURR_SHA512="$(cat ${PATH2SHA512})"
-		[[ ${CURR_SHA512} = ${SZ_SHA512} ]] || SOURCING_NEEDED=true
-	else
-		SOURCING_NEEDED=true
-	fi
-	${SOURCING_NEEDED} && {
+	
+	terminal-update-needed "${CURR_SHELL_ALIASES}" && {
+        eval "unset SHELL_ALIASES${POSTFIX_UPPERCASE}_SOURCED"
 		source ${CURR_SHELL_ALIASES}
-		echo ${SZ_SHA512} > "${PATH2SHA512}"
-	}
+        terminal-update-checksum "${CURR_SHELL_ALIASES}"
+        echo "sourced"  >> "${TMPDIR}/debug-${}"
+	} || { 
+        echo "not sourced"  >> "${TMPDIR}/debug-${}" 
+    }
 }
 
 __update-aliases () {

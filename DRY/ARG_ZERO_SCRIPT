@@ -4,8 +4,12 @@ isDebug && echo "Script name $0"
 
 export SCRIPT_ADDED="SCRIPT_ADDED"
 
-[[ -z "$BASHVARS" ]] && source ~/.bash_vars
-[[ -z "$CLICOLOR" ]] && source $BIN/.functions
+#debug-current-script "${0}"
+echo "$(date +"%s") : ${0} sourced" >> ${PATH_DEBUG_CHECK_SETUP_FILE}
+echo "$(date +"%s") : ${0} sourced" >> ${PATH_DEBUG_CHECK_SETUP_FILE_TIMESTAMP}
+
+[[ -r ~/.shell_vars ]] && source ~/.shell_vars
+source $BIN/.functions
 [[ -z "$ALIASES_SET" ]] && source ~/.bash_aliases
 #[[ -z "$BASHVARS" ]] && source ~/.bash_vars
 

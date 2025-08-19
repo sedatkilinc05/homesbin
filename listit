@@ -20,6 +20,7 @@ fi
 for i in $(echo ${INPUT}); do 
     echo ${i}; 
 done 
-#unset IFS
-resetIFS
+
+#resetIFS
+IFS_PREV=(); IFS=${IFS_ORIG}
 IFS=${IFS_ORIG}

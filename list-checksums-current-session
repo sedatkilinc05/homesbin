@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_list-checksums-current-session () {
+	ls -G -1AF -lhG -Ut ${CHECKSUMS_FOLDER}/$(terminal-session-id)* | sed -E "s/.*[\.0-9]+[BKM]+ /${SUBSTITUTE_CHARS}/g"
+}
+_list-checksums-current-session ${@}

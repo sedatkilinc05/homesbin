@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+ALIGNMENT=''
+if startsWithDash ${1} && [[ ${1} = '-v' ]]
+then
+    ALIGNMENT='\n'
+    shift
+fi
+
+_echo-n-times () {
+printf "${1}%.0s${ALIGNMENT}" {1..${2}}
+}
+_echo-n-times ${@}

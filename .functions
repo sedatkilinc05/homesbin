@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+debug-current-script "${0}" "" 2> /dev/null
 source $HOME/.debug_state
 
 isDebug && echo "1) \${SHELL_ALIAS_SOURCED} = ${SHELL_ALIAS_SOURCED}"
@@ -7,14 +8,14 @@ isDebug && echo "1) \${SHELL_ALIAS_SOURCED} = ${SHELL_ALIAS_SOURCED}"
 isDebug && echo "2) \${SHELL_ALIAS_SOURCED} = ${SHELL_ALIAS_SOURCED}"
 
 isDebug && echo "Script name ${0}" 2> /dev/null
-log-write "com.googlecode.iterm2" "${0} :"
-log-write "com.googlecode.iterm2" "\$SHELL_FUNCTIONS = ${SHELL_FUNCTIONS}"
-log-write "com.googlecode.iterm2" "\$BASHFUNCTIONS = ${BASHFUNCTIONS}"
-log-write "com.googlecode.iterm2" "\$SHELLFUNCTIONS = ${SHELLFUNCTIONS}"
-log-write "com.googlecode.iterm2" "alias ekko $(alias ekko)"
+#log-wirte "com.googlecode.iterm2" "${0} :"
+#log-wirte "com.googlecode.iterm2" "\$SHELL_FUNCTIONS = ${SHELL_FUNCTIONS}"
+#log-wirte "com.googlecode.iterm2" "\$BASHFUNCTIONS = ${BASHFUNCTIONS}"
+#log-wirte "com.googlecode.iterm2" "\$SHELLFUNCTIONS = ${SHELLFUNCTIONS}"
+#log-wirte "com.googlecode.iterm2" "alias ekko $(alias ekko)"
 
 BASHFUNCTIONS=${0}
-SHELLFUNCTIONS=${0}
+# SHELLFUNCTIONS=${0}
 BINFUNCTIONS=$SHELL_FUNCTIONS
 SCRIPTNAME="${0}"
 export CLICOLOR=1
@@ -425,7 +426,7 @@ hexcount() {
 }
     
 realpathf() { 
-    /usr/bin/python -c "import os,sys; print(os.path.realpath(sys.argv[1]))"     "${0}"; 
+    python3 -c "import os,sys; print(os.path.realpath(sys.argv[1]))"     "${0}"; 
 }
 
 if [ -f .urlencode ]; then
@@ -1787,3 +1788,5 @@ countchar() { echo "${1}" | wc -c; }
 get-nth-dirs-path () {
 	dirs -l -v | head -n ${1} | tail -n 1 | list-col 2
 }
+
+debug-current-script "" "${0}" 2> /dev/null

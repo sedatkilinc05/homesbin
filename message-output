@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+
+_message-output () {
+	FG=199 
+	BG=157
+    INDEX_ARROW=${2:-6}
+	TXT="$(char-arrow-inwards " ${1} " ${INDEX_ARROW})" 
+	ecko " $(printf ' %.0s' {1..${#TXT}})  " ${FG} ${BG}
+	ecko " ${TXT}  " ${FG} ${BG}
+	ecko " $(printf ' %.0s' {1..${#TXT}})  " ${FG} ${BG}
+}
+_message-output ${@}

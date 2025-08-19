@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+
+__c2d () {
+	(
+		source isDebugLocal || source isDebugGlobal
+	) && echo "${1}"
+	local TOGO="${1}" 
+	[[ -f "${1}" ]] && TOGO=$(dirname "${1}") 
+	cd "${TOGO}"
+}
+__c2d ${@}

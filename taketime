@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+alias ns='date +"%s.%N"'
+
+_taketime () {
+	TIME_START=$(ns) 
+	eval "${1}"
+	TIME_STOP=$(ns) 
+	echo "TIME_START : ${TIME_START}" 1> /dev/stdin
+	echo "TIME_STOP  : ${TIME_STOP}" 1> /dev/stdin
+	TIME_DIFF=$((${TIME_STOP}-${TIME_START}))
+	echo "TIME_DIFF  : ${TIME_DIFF}" 1> /dev/stdin
+	echo ${TIME_DIFF}
+}
+_taketime ${@}

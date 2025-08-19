@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+
+_check-var-number () {
+	export NUMBER_SET=$(($(set | wc -l))) 
+	export NUMBER_ENV=$(($(ENV | wc -l))) 
+	echo "number of variables ⟹  set $((NUMBER_SET))"
+	echo "number of variables ⟹  env $((NUMBER_ENV))"
+}
+_check-var-number ${@}

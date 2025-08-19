@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+
+_determineFileExtension () {
+    for TMP_FILE in ${@}
+    do
+        file --extension "${TMP_FILE}" | sed -e 's/.*:[ ]*//g' | sed -e 's/\/.*//g'
+    done
+}
+_determineFileExtension ${@}

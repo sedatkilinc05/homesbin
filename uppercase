@@ -14,6 +14,6 @@ then
     done
 else
     INPUT_PIPE="$(cat < /dev/stdin)"
-    [[ -n ${INPUT_PIPE} ]] && _uppercase "${INPUT_PIPE}"
+    [[ -n ${INPUT_PIPE} ]] && _uppercase "${INPUT_PIPE}" || echo ''
 fi
 

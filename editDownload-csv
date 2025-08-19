@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_editDownload-csv () {
+	vi ${BINTMP}/2download.csv
+}
+_editDownload-csv ${@}

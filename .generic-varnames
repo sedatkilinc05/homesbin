@@ -1,0 +1,24 @@
+#!/bin/zsh
+
+VARNAME=$(echo ${${0}##*/} | uppercase)
+VARNAME=${VARNAME//-/_}
+
+OPTS=()
+TMPINPUT="${1}"
+
+[[ ${#} -gt 0 ]] && startsWithDash ${TMPINPUT} && [[ ${TMPINPUT[2]} =~ '[^0-9]' ]] && OPTS+="${1}" && shift
+
+_uc-facepalm_ () {
+	#echo -n "${UC_FACEPALM}"
+	#echo -n "\$${VARNAME}"
+	eval "echo -n \$${VARNAME}\${UC_COLOR_${1}}"
+	echo ${OPTS}
+}
+
+_uc-facepalm() {
+    for IDX in ${@}
+    do
+	    isNumeric ${IDX} && [[ ${IDX} -le 5 ]] && _uc-facepalm_ ${IDX} || echo ${OPTS} ${IDX}
+    done
+}
+[[ ${#} -gt 0 ]] && _uc-facepalm ${@} || _uc-facepalm {0..5}

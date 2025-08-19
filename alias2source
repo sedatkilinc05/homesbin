@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+
+_alias2source () {
+	which ${1} | cut -d ' ' -f4 | xargs which | xargs ccat
+}
+
+__alias2source () {
+    WW_ALIAS=$(which ${1})
+    COMMAND_NAME=$(echo ${WW_ALIAS} | cut -d ' ' -f4)
+
+    WW_PATH=$(which ${COMMAND_NAME})
+    ccat ${WW_PATH}
+}
+_alias2source ${@}

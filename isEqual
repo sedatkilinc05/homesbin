@@ -1,5 +1,5 @@
 #!/bin/zsh
 
-true; return
-false;return
-
+#true; return
+#false;return
+[[ ${#} -eq 2 ]] && [[ ${1} -eq ${2} ]]

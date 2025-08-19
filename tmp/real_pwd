@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_real_pwd () {
+	pwd
+}
+_real_pwd ${@}

@@ -5,7 +5,7 @@
 source ~/bin/.functions
 FULL=false
 
-startsWithDash ${1} && [ ${1/-/} = 'f' -o ${1/-/} = '-full' ] && FULL=true && shift
+[[ ${#} -gt 0 ]] && startsWithDash ${1} && [ ${1/-/} = 'f' -o ${1/-/} = '-full' ] && FULL=true && shift
 
 if [[ ${#} -gt 0 ]]
 then
@@ -14,6 +14,8 @@ else
     INPUT_PIPE="$(cat < /dev/stdin)"
     [[ -n ${INPUT_PIPE} ]] && ARR_FILEPATH=($(echo ${INPUT_PIPE}))
 fi
+
+#ecko " ➭ ARR_FILEPATH.length ${#ARR_FILEPATH} " 17 214
 
 for FILEPATH in ${ARR_FILEPATH}
 do

@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+
+_terminal-check () {
+	TMP_SCRIPT="${1:-${SHELL_VARS}}" 
+	echo -n "${TMP_SCRIPT} needs to be sourced again? $ARROWR[6] "
+	terminal-update-needed ${TMP_SCRIPT} && echo "${_TU1} YES" || echo "${_TD1} NO"
+}
+_terminal-check ${@}

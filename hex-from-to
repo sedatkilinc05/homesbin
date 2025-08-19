@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_hex-from-to () {
+	printf 0x%0${3}X\ \n {${1}..${2}}
+}
+_hex-from-to ${@}

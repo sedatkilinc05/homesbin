@@ -7,7 +7,7 @@ if [ -z $1  ];then
 fi
 CLIP="https://www.youtube.com/watch?v=$1"
 if [ "$2" == "d" ];then
-    youtube-dl $CLIP
+    yt-dlp $CLIP
 else
     echo $CLIP
     echo -n $CLIP | tee $(pbcopy)

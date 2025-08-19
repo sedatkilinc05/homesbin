@@ -30,7 +30,7 @@ _first () {
 		echo "\${WHERE}=${WHERE}"
 		echo "\${LINECOUNT}=${LINECOUNT}"
 	}
-	CMD="ls -lAGc${H}t \"${WHERE}\" | head -n $((${LINECOUNT}+1))" 
+	CMD="ls -lAG${H}t \"${WHERE}\" | head -n $((${LINECOUNT}+1))" 
 	isDebugLocal && echo ${CMD}
 	eval ${CMD}
 }

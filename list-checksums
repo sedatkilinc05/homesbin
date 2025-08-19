@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+
+_list-current-session-checksums () {
+	#ls -G -1AF -lhG -Ut ${CHECKSUMS_FOLDER} | sed -E "s/.*[\.0-9]+[BKM]+ /${SUBSTITUTE_CHARS}/g"
+    llUt $CHECKSUMS_FOLDER/ | sed-remove-ls-l-prolog
+}
+_list-current-session-checksums ${@}

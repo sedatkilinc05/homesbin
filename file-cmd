@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+
+_file-cmd () {
+	local PATH2BIN=$(which -a ${1} | tail -n 1) 
+	file ${PATH2BIN}
+}
+_file-cmd ${@}

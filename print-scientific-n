@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_print-scientific-n () {
+	printf %.${2:-6}e ${1}
+}
+_print-scientific-n ${@}
