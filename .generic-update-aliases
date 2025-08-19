@@ -1,6 +1,7 @@
 #!/bin/zsh
 
 SCRIPT=${0##*/} 
+POSTFIX_UPPERCASE=''
 
 _update-aliases () {
 	POSTFIX="${SCRIPT//update-aliases/}"
