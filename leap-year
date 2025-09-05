@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+
+_leap-year () {
+	DATUM="$(date -v1d -v3m -v${1:-+0}y -v-1d)" 
+	TWENTYNINE=$(echo $DATUM | grep -oE '29') 
+	[[ ${TWENTYNINE} -eq 29 ]]
+}
+_leap-year ${@}

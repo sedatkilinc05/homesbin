@@ -2,6 +2,6 @@
 
 
 _pb-arrow-emphasize () {
-	arrow-emphasize -2 "$(pbpaste)" | pbcopy
+	arrow-emphasize ${1:--2} "$(pbpaste)" | pbcopy
 }
 _pb-arrow-emphasize ${@}

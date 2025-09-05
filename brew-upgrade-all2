@@ -4,12 +4,19 @@ PREVIOUS_CSV=false
 REVERSE_ORDER=false
 DRY_RUN=false
 
+POINT2RIGHT="\\U1f449\\U1f3fe \\U1f449\\U1f3fd \\U1f449\\U1f3fc \\U1f449\\U1f3fb"
+POINT2LEFT="\\U1f448\\U1f3fb \\U1f448\\U1f3fc \\U1f448\\U1f3fd \\U1f448\\U1f3fe"
+
+pointTo () {
+	ecko " ${POINT2RIGHT} ${1} ${POINT2LEFT} " ${2:-1} ${3:-230}
+}
+
 if [[ ${#} -gt 0 ]] && startsWithDash ${1}
 then 
-	[ ${1/-/} = 'n' -o ${1/-/} = '-new' ] && ecko -n " ${TURK} " && memsave -s && memread && shift
-	[ ${1/-/} = 'p' -o ${1/-/} = '-previous-csv' ] && ecko " \\U1f449\\U1f3fd Previous CSV" && PREVIOUS_CSV=true && shift
-	[ ${1/-/} = 'r' -o ${1/-/} = '-reverse' ] && ecko " \\U1f449\\U1f3fd Reverse Order" 231 16 && REVERSE_ORDER=true && shift
-	[ ${1/-/} = 'd' -o ${1/-/} = '-dry-run' ] && ecko " \\U1f449\\U1f3fe Dry Run" 16 239 && DRY_RUN=true && shift
+    [ ${1/-/} = 'n' -o ${1/-/} = '-new' ]                               && pointTo "${TURK}" 255 160 && memsave -s && memread && shift
+    [[ ${#} -gt 0 ]] && [ ${1/-/} = 'p' -o ${1/-/} = '-previous-csv' ]  && pointTo "Previous CSV" 232 118 && PREVIOUS_CSV=true && shift
+    [[ ${#} -gt 0 ]] && [ ${1/-/} = 'r' -o ${1/-/} = '-reverse' ]       && pointTo "Reverse Order" 231 161 && REVERSE_ORDER=true && shift
+    [[ ${#} -gt 0 ]] && [ ${1/-/} = 'd' -o ${1/-/} = '-dry-run' ]       && pointTo "Dry Run" 161 231 && DRY_RUN=true && shift
 fi
 
 # cat  $TMP/brew-outdated.txt | (false && sort -r || sort)

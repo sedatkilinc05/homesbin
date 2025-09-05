@@ -16,6 +16,6 @@ _arrow-emphasize () {
     CONTENT="${1:-$(pbpaste)}" # && shift
                     # ecko "12${@}" 88 188 ;  ecko "${TMPINPUT}" 188 88;  
                     # ecko "char-arrow-left-right -n -${IDX_ARROW} \"  ${CONTENT}\" ${IDX_ARROW} '   '"
-    char-arrow-left-right -n -${IDX_ARROW} "  ${CONTENT} " ${IDX_ARROW} '   '
+    char-arrow-left-right -n -${IDX_ARROW} "  ${CONTENT}  " ${IDX_ARROW} ''
 }
 _arrow-emphasize ${@}

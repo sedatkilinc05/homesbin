@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+
+_ffmpeg-concat-wildcard () {
+	TARGET_FILE="${1}" 
+	shift
+	ffmpeg-create-concat-file ${@}
+	ffmpeg-concat ${TARGET_FILE}
+}
+_ffmpeg-concat-wildcard ${@}

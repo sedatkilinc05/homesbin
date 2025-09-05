@@ -1,11 +1,13 @@
-#!/bin/bash
+#!/bin/zsh
 
-FROM=$(fileext $1)
-TO=mp4
-if [ $# -gt 1 ]; then
-    TO="$2"
-fi
+FROM=$(fileext ${1})
+TO=${2:-mp4}
 
-#ffmpeg -fflags +genpts -i "$1" -r 24 $(filename "$(fileroot "$1").mp4")
-TARGET=${1/$FROM/$TO}
-ffmpeg -fflags +genpts -i "$1" -r 24 "$TARGET"
+TARGET=${1//$FROM/$TO}
+
+ecko -n "\n⟹⇨ FROM ${FROM}" 161 150 1
+ecko -n "\n⟹⇨ TO ${TO}" 6 163 1
+ecko -b "\n⟹⇨ TARGET ${TARGET}" 163 7 1
+# eval "$(. retexit2 6)"
+
+ffmpeg -fflags +genpts -i "${1}" -r 24 "${TARGET}"

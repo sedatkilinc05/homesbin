@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+
+_ffmpeg-concat-output () {
+    echo "##########################################################"
+    echo "##\t\t\tSedat Kilinc\t\t\t##"
+    echo "##\t\t\tAmasia Dev\t\t\t##"
+    echo "##########################################################"
+    #header
+	printf "file '%s'\n" ${@}
+}
+_ffmpeg-concat-output ${@}

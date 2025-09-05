@@ -10,31 +10,27 @@ KF='%k%f'
     
 CNTR=0
 
-_handle-args() {
-
-    for param in ${@}
-    do
-        #echo "Begin param:${param}: CNTR: ${CNTR}"
-        if startsWithDash ${param}
-        then
-            ([[ ${param/-/} = "-bold" ]] || [[ ${param/-/} = "b" ]]) && BOLD='%B' && ((CNTR++)) #&& echo bold
-            ([[ ${param/-/} = "-newline" ]] || [[ ${param/-/} = "n" ]]) && NL='' && ((CNTR++)) #&& echo newline
-        else
-            ([[ CNTR -ge 0 ]] && [[ CNTR -le 2 ]]) && [[ -z "${TEXT}" ]] && TEXT="${param}"  && ((CNTR++)) #&& echo text
-        fi
-        #echo "end param:${param}: CNTR: ${CNTR}"
-    done
-    shift ${CNTR}
-}
-
 _ecko() {
 
-
+    #echo "$0 CNTR: ${CNTR} ; \$@ = $@; \$#= $#"
+    if [[ "${1}" != "NO" ]]
+    then
+        for param in ${@}
+        do
+            if startsWithDash ${param}
+            then
             
+                ([[ ${param/-/} = "-bold" ]] || [[ ${param/-/} = "b" ]]) && BOLD='%B' && ((CNTR++)) && shift #&& echo bold
+                ([[ ${param/-/} = "-newline" ]] || [[ ${param/-/} = "n" ]]) && NL='' && ((CNTR++)) & shift #&& echo newline
+            fi
+        done
+    else
+        shift
+    fi
+    
     TEXT="${1}" # && ((CNTR++)) #&& echo text
     shift
 
-    #_handle-args
 
     FGC=''
     BGC=''
@@ -50,7 +46,7 @@ if [[ -n ${INPUT_STDIN} ]]
 then
     for line in ${INPUT_STDIN}
     do
-        _ecko ${line} ${@}
+        _ecko "NO" ${line} ${@}
     done
 else
     _ecko ${@}

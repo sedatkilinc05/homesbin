@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_vars-all () {
+	set | grep --color=auto --color=auto "${1}"
+}
+_vars-all ${@}

@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_ffmpeg-concat () {
+	ffmpeg -f concat -safe 0 -i "${2:-files2concat.txt}" -c copy "${1}"
+}
+_ffmpeg-concat ${@}

@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+TMP_PATH="$(which ${1})"
+
+[[ -f "${TMP_PATH}" ]] || TMP_PATH="$(source alias-root ${1} | tail -n 1 | grep -oE '[-_0-9a-zA-Z]+$')"
+
+[[ -f "${TMP_PATH}" ]] || eval "$(. retexit2 666)"  # eval "$(. retexit2 666)"
+
+_source-code () {
+	which "${TMP_PATH}" | xargs ls -1A | xargs ccat
+}
+
+_source-code ${@}

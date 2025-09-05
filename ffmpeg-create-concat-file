@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_ffmpeg-create-concat-file () {
+	ffmpeg-concat-output ${@} | tee "${PWD}/files2concat.txt"
+}
+_ffmpeg-create-concat-file ${@}

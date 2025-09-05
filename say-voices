@@ -2,16 +2,18 @@
 
 
 _say-voices () {
-	say -v "?" | grep --color=auto -E "(${1[1,2]}_|_${1[1,2]})"
+	say -v "?" | grep --color=auto -E "(\b${1}\b|${1[1,2]}_|_${1[1,2]})"
 
     if [[ ${#} -eq 0 ]]
     then
         ecko " Use language code and or coutry code as parameter,… " 9 97 > /dev/stderr
     
         echo > /dev/stderr
-        ecko -n " e.g. " 197 99 > /dev/stderr; ecko -n " en " 99 197 > /dev/stderr; ecko -n " or " 197 99 > /dev/stderr; ecko -n " GB " 99 197 > /dev/stderr; ecko  " for a country " 197 99 > /dev/stderr
+        ecko  " e.g." 90 190 > /dev/stderr
+        ecko " ⥤  en  or  GB  ⥢ " 190 90 > /dev/stderr
+    ecko  " for a country " 90 190 > /dev/stderr
         echo > /dev/stderr
-        ecko -n " e.g. " 1 19 > /dev/stderr; ecko -n " en_US " 19 1 > /dev/stderr; ecko  " for a country's language " 1 19 > /dev/stderr
+        ecko " e.g. " 1 11 > /dev/stderr; ecko " ⥤  en_US  ⥢ " 11 1 > /dev/stderr; ecko  " for a country's language " 1 11 > /dev/stderr
     fi
 }
 _say-voices ${@}

@@ -16,9 +16,11 @@ IFS=$','
 if [ -n "${2}" ]; then
     IFS="${2}"
 fi
+#[[ -n "${3}" ]] && POST="${3}"
+#[[ -n "${4}" ]] && PRE="${4}"
 
 for i in $(echo ${INPUT}); do 
-    echo ${i}; 
+    echo "${4}${i}${3}"; 
 done 
 
 #resetIFS
