@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CURRENT_ED=subl
+CURRENT_ED=code
 
 PATH_COMMAND=$(which "$1")
 
@@ -14,4 +14,4 @@ if [[ -z $(which $CURRENT_ED) ]]
 then
     CURRENT_ED=vi
 fi
-$CURRENT_ED $PATH_COMMAND
+${CURRENT_ED} ${PATH_COMMAND}

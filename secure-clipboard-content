@@ -1,0 +1,35 @@
+#!/bin/zsh
+
+export FILE_CLIPBOARD_CACHE_MEMORY="${TMPDIR}/clipboard-cache-memory.txt" 
+export FILE_CLIPBOARD_CACHE_MEMORY_HISTORY="${TMPDIR}/clipboard-cache-memory-history.txt" 
+
+last-secure-clipboard-content() {
+    cat "${FILE_CLIPBOARD_CACHE_MEMORY}"
+}
+
+alias last-secure-clipboard-content-pb='last-secure-clipboard-content | pbcopy'
+
+history-secure-clipboard-content() {
+    cat "${FILE_CLIPBOARD_CACHE_MEMORY_HISTORY}"
+}
+
+if [[ ${1} = '-h' ]] || [[ ${1} = '--help' ]]
+then
+    ecko -b " ⥤ last-secure-clipboard-content  ⥢ 		" 111 161
+    ecko -b "\t ${ARROWS[12]} returns the last secured clipboard content to stdout" 161 111
+    ecko -b " ⥤ last-secure-clipboard-content-pb  ⥢ 		" 111 161
+    ecko -b "\t ${ARROWS[12]} returns the last secured clipboard content to stdout and into clipboard" 161 111
+    ecko -b " ⥤ history-secure-clipboard-content  ⥢ 		" 111 161
+    ecko -b "\t ${ARROWS[12]} returns the whole secured clipboard history with its content to stdout" 161 111
+    . retexit 304
+fi
+
+
+_secure-clipboard-content () {
+	pbpaste > "${FILE_CLIPBOARD_CACHE_MEMORY}"
+    echo "####  ⥤  $(date)  ⥢  ####" >> "${FILE_CLIPBOARD_CACHE_MEMORY_HISTORY}"
+	pbpaste >> "${FILE_CLIPBOARD_CACHE_MEMORY_HISTORY}"
+    echo "#########################" >> "${FILE_CLIPBOARD_CACHE_MEMORY_HISTORY}"
+}
+_secure-clipboard-content ${@}
+

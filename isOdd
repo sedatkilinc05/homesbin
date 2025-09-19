@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_isOdd () {
+	! isEven ${1}
+}
+_isOdd ${@}

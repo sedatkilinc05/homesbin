@@ -1,7 +1,0 @@
-#!/bin/zsh
-
-
-_fooo () {
-	echo $1 > $TMPDIR/${2:-stuff}.txt
-}
-_fooo ${@}

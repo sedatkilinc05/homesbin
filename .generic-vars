@@ -1,7 +1,11 @@
 #!/bin/zsh
 
 SCRIPT="${0##*/}" 
-POSTFIX="$(uppercase ${SCRIPT/vars-/})" 
-CMD="vvars -t \${SHELL_VARS_${POSTFIX}} ${@}"
-ecko "${CMD}" 118 88 > /dev/stdin
+
+SCRIPT="${SCRIPT/vars/}" 
+[[ -n ${SCRIPT} ]] && POSTFIX="$(uppercase ${SCRIPT/vars/})" 
+POSTFIX="${POSTFIX/-/_}"
+
+CMD="vvars -t \${SHELL_VARS${POSTFIX}} ${@}"
+#ecko "${CMD}" 118 88 > /dev/stdin
 eval "${CMD}"

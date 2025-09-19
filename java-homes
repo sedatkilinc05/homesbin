@@ -1,5 +1,5 @@
 #!/bin/zsh
 
+export JAVA_HOMES=( $CELLAR/openjdk*/*/libexec/openjdk.jdk/Contents/Home )
 
-ls -lah /Library/Java/JavaVirtualMachines/*/Contents/Home/
 ls -lah $CELLAR/openjdk*/*/libexec/openjdk.jdk/Contents/Home

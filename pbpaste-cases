@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+
+_pbpaste-cases () {
+	pbpaste
+	echo
+	pbpaste | lowercase
+	pbpaste | uppercase
+}
+_pbpaste-cases ${@}

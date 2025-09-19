@@ -10,7 +10,6 @@ _log-message () {
 	STATUSCOLOR="$GREEN${STATUS}$NORMAL" 
 	let COL=$(tput cols)-${#MSG}+${#STATUSCOLOR}-${#STATUS}
 	echo -n $MSG
-	printf "%${COL}s
-" "$STATUSCOLOR"
+	printf "%${COL}s" "$STATUSCOLOR"
 }
 _log-message ${@}

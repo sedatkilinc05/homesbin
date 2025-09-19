@@ -1023,9 +1023,10 @@ getSymlinks () {
 	ls -G -lAct $FOLDER/ | grep --color=auto -E ^l
 }
 
-exists () {
-	[[ -n "${1}" ]] && return 0 || return 1
-}
+# see $BIN/exists
+#exists () {
+#	[[ -n "${1}" ]] # && return 0 || return 1
+#}
 
 
 add-function () {
@@ -1409,12 +1410,12 @@ get-functions-containing_name () {
 	cat $SCRIPTFILE | grep --color=auto --color=auto -oE "^\S*${1}\S*\s?\(\)"
 }
 
-add-moron () {
-	NAME="${1}" 
-	SURNAME="${2}" 
-	[[ -n "${3}" ]] && RESIDENCE="${3}" 
-	echo "${NAME};${SURNAME};${NAME} ${SURNAME};${RESIDENCE}" >> $JANUARY_6th_INSURRECTION
-}
+#add-moron () {
+#	NAME="${1}" 
+#	SURNAME="${2}" 
+#	[[ -n "${3}" ]] && RESIDENCE="${3}" 
+#	echo "${NAME};${SURNAME};${NAME} ${SURNAME};${RESIDENCE}" >> $JANUARY_6th_INSURRECTION
+#}
 
 #path2string () {
 #	ARG_PATH="${1}" 
