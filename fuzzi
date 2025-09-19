@@ -1,7 +1,0 @@
-#!/bin/zsh
-
-
-_fuzzi () {
-	echo $@
-}
-_fuzzi ${@}
