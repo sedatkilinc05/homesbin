@@ -36,11 +36,9 @@ profile
 retexit2
 retexit3
 retexit5
-show-result
 sz-israel
 template-python
-tmp/matsch
-tmp/retexittest
+tmp/
 tmpx2tmp
 tmpx2tmpdir
 trash-empty-files
