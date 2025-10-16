@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+header() {
+    echo -n '\t';echo-n-times '=' 15;echo -n ">  ${1}  <"; echo-n-times '=' 15; echo ''
+}
+
+_ytdc-formats-pb () {
+	yt-dlp --no-mark-watched --no-check-certificate --list-formats $(pbpaste)
+    VIDEO_ID=$(pbpaste | cut -d '=' -f2)
+    OUTPUT_YT_FILE="${OUTPUT_YT}/list-formats•[${VIDEO_ID}].txt"
+    header "$(pbpaste)" > ${OUTPUT_YT_FILE}
+	yt-dlp --no-mark-watched --no-check-certificate --list-formats $(pbpaste) >> ${OUTPUT_YT_FILE}
+    ecko "${OUTPUT_YT_FILE}" $ECKO_COMBO_TR
+}
+_ytdc-formats-pb ${@}

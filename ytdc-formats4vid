@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_ytdc-formats4vid () {
+	cat $OUTPUT_YT/list-formats•"${1}".txt
+}
+_ytdc-formats4vid ${@}

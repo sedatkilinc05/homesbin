@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+
+_ytdc-format-pb () {
+    FORMAT=${1}
+    shift
+	yt-dlp --no-mark-watched --no-check-certificate $(pbpaste) -f ${FORMAT} ${@}
+}
+_ytdc-format-pb ${@}

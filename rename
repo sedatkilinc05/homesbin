@@ -18,7 +18,7 @@ PATH2FILE="${1}"
 NEWFILENAME_NO_EXT="${2//\//${SUBST}}"
 NEWFILENAME="${PATH2FILE/$(fileroot ${PATH2FILE})/${NEWFILENAME_NO_EXT}}"
 
-mv "${PATH2FILE}" "$(dirname ${PATH2FILE})/${NEWFILENAME}"
+mv "${PATH2FILE}" "${NEWFILENAME}"
 
 [[ $? -eq 0 ]] && $VERBOSE && _verbose-output
 

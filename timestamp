@@ -2,6 +2,7 @@
 
 
 _timestamp () {
-	date +"%s"
+    TIMESTAMP=$(date +"%s")
+    echo $((${TIMESTAMP}))
 }
 _timestamp ${@}

@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+
+_ytdc-used-formats () {
+    
+    V_ID=${1:-$(ls -1AFUt | head -n 1 | grep -oE '\[.+\]')}
+	ls -1AFlhGUt $OUTPUT_YT/list-formats•${V_ID}.txt | sed -E "s/${REGEX_LS_L_PROLOG}/${SUBSTITUTE_CHARS}/g" | xargs cat | grep ${GREP_EXCLUDE_DIR_NODE_MODULES} ${GREP_EXCLUDE_DIR_GIT} ${GREP_EXCLUDE_DIR_NODE_MODULES} ${GREP_EXCLUDE_DIR_GIT} -E "$(ls -1A *"${V_ID}"* | grep -oE '[0-9]{1,3}\|[0-9]{1,3}')"
+}
+_ytdc-used-formats ${@}

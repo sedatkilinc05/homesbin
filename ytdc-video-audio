@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+YT_URL="$(pbpaste)"
+VIDEO_ID=$(pbpaste | cut -d '=' -f2)
+
+ytdc-format-pb ${1} --output video.mp4
+ytdc-format-pb ${2}
+
+FILE_AUDIO="$(ls -G1AFUt | head -n 1)"
+FILENAME=$(fileroot "${FILE_AUDIO}")
+
+ffmpeg-merge-av video.mp4 "${FILE_AUDIO}" "${FILENAME}-${1}|${2}.mp4"
+
+rm -f "${FILE_AUDIO}"
+rm -f video.mp4
+

@@ -1,0 +1,64 @@
+#!/bin/zsh
+
+# SCRIPTNAME="$(basename $0)"
+SCRIPTNAME=${0##*/} # this one is way more cooler if not `BADASS` (lat. `ANUS MALUS`)
+SCRIPT="addvar${SCRIPTNAME//addarray/}"
+SCRIPT_UPDATE="update-vars${SCRIPTNAME//addarray/}"
+SCRIPTNAME2="${SCRIPTNAME//-/_}"
+CURR_SHELL_VARS="${SHELL_VARS}${SCRIPTNAME2//addarray/}"
+
+source ${CURR_SHELL_VARS}
+# add alias like
+# alias addarray='source addarray'
+#[[ ${SHLVL} -eq 1   ]] && [[  -z $(alias ${SCRIPTNAME})  ]] && addalias ${SCRIPTNAME} "source ${SCRIPTNAME}" && update_aliases && echo "alias added" && alias  ${SCRIPTNAME} || ( echo "canceled because of missing alias to be run by calling it with source"; echo "run again with \"source ${SCRIPTNAME} ${@}\" after updating aliases-source ${SHELL_ALIASES}"  )
+
+QTS="\""
+[[ ${#} -gt 0 ]] && startsWithDash "${1}" && [[ ${1//-/} = 's' ]] && QTS="'" && shift
+[[ ${#} -gt 0 ]] && startsWithDash "${1}" && [[ ${1//-/} = 'a' ]] && QTS="" && shift
+
+_addarray() {
+
+    if [[ $# -eq 0  ]] ||  [[ $# -lt 1  ]]
+    then
+        echo "$# is $((1-$#)) too few"
+        echo "Usage: ${SCRIPTNAME} name \"[[value] .. ]\""
+        echo "addalias ${SCRIPTNAME} 'source ${SCRIPTNAME}'"
+        [[ ${SHLVL} -gt 1 ]] && exit 1 || return 1
+    fi
+
+    OPTS=()
+    for param in ${@}
+    do
+        startsWithDash ${1} && OPTS+=${param} || break;
+    done
+    #shift ${#OPTS}
+    #CURR_SHELL_VARS="${SHELL_VARS}"
+    #[[ -w "${1}" ]] && CURR_SHELL_VARS="${1}" && shift
+    ARRNAME=${1}
+    shift
+
+    ARR2ADD=( $(eval "echo \$$ARRNAME") )
+    SZ_ELEMENTS=''
+    if [[ -n ${@} ]]
+    then
+        for el in ${@}
+        do
+            [[ ${ARR2ADD[-1]} = ${el} ]] || SZ_ELEMENT+="${QTS}${el}${QTS} " #  && ARRNAME="${ARRNAME}+"
+        done
+    fi
+    WCL=$(cat ${CURR_SHELL_VARS} | grep -E "${ARRNAME}=" | wc -l)
+    INTWCL=$(($WCL))
+    if [[ ${INTWCL} -gt 0 ]] 
+    then 
+        ARRNAME="${ARRNAME}+"
+    else
+        ARRNAME="${ARRNAME//+/}"
+    fi
+
+    ARRNAME=${ARRNAME/++/+}
+
+    [[ -n "${SZ_ELEMENT}" ]] && ${SCRIPT} ${OPTS} -a ${ARRNAME} "( ${SZ_ELEMENT} )"
+
+}
+_addarray ${@}
+

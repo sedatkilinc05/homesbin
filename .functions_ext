@@ -220,15 +220,15 @@ arr4output () {
 	eval "${CMD}"
 }
 
-_links-grep () {
-	{
-        [[ ${#} -gt 1 ]] && SZ_REGEX="${2}${1}${2}" || SZ_REGEX="${1}"
-        isDebug &&  echo "${SZ_REGEX}"
-		grep  -ril . $LINKS | grep  "${SZ_REGEX}"
-	} 2> /dev/null
-}
+#_links-grep () {
+#	{
+#        [[ ${#} -gt 1 ]] && SZ_REGEX="${2}${1}${2}" || SZ_REGEX="${1}"
+#        isDebug &&  echo "${SZ_REGEX}"
+#		grep  -ril . $LINKS | grep  "${SZ_REGEX}"
+#	} 2> /dev/null
+#}
 
-links-grep() {
+links-grep-f() {
 	{
 		case ${#} in
          1)

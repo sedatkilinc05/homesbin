@@ -2,6 +2,6 @@
 
 
 _gst-changed () {
-	git status | grep --color=auto 'geändert' | list-col -1
+	git status | grep -E 'geändert|modified' | list-cols 2
 }
 _gst-changed ${@}

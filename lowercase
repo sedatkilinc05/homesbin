@@ -1,7 +1,11 @@
 #!/bin/zsh
 
+OPTS=()
+
+[[ ${#} -gt 0 ]] && startsWithDash ${1} && OPTS+=${1} && shift
+
 _lowercase() {
-	echo "${1}" | tr '[:upper:]' '[:lower:]'
+	echo ${OPTS} "${1}" | tr '[:upper:]' '[:lower:]'
 }
 
 if [[ ${#} -gt 0 ]]

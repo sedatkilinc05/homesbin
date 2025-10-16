@@ -2,14 +2,14 @@
 
 _code_ () {
 	[[ ${#} -eq 1 ]] && 
-        [[ -n ${1} ]] && 
-        [[ -d "${1}" ]] && 
-        {
-            [[ ${1} = '.' ]] && 
-                setvar -t ${SHELL_VARS_PROJECTS} PROJECTS_LATEST "${PWD}" || 
-                setvar -t ${SHELL_VARS_PROJECTS} PROJECTS_LATEST "${1}"
-            }
-
+    [[ -n ${1} ]] && 
+    [[ -d "${1}" ]] && 
+    {
+        [[ ${1} = '.' ]] &&    
+        setvar -t ${SHELL_VARS_PROJECTS} PROJECTS_LATEST "${PWD}" ||     
+        setvar -t ${SHELL_VARS_PROJECTS} PROJECTS_LATEST "${1}"    
+    }
+    unset SHELL_ALIASES_SOURCED
 	source ${SHELL_VARS_PROJECTS}
 
 	if [[ ${#} -eq 0 ]]
@@ -18,7 +18,7 @@ _code_ () {
 	else
 		if [[ ${ARR_PROJECTS_LATEST[-1]} != "${PROJECTS_LATEST}" ]]
 		then
-			addarray ${SHELL_VARS_PROJECTS} ARR_PROJECTS_LATEST "${PROJECTS_LATEST}"
+			addarray-projects ARR_PROJECTS_LATEST "${PROJECTS_LATEST}"
 		fi
 		original code $@
 	fi

@@ -1,13 +1,17 @@
 #!/bin/zsh
 
 QTS="\""
+KEEP=false
 startsWithDash "${1}" && [[ ${1//-/} = 's' ]] && QTS="'" && shift
+startsWithDash "${1}" && [[ ${1//-/} = 'a' ]] && QTS="" && shift
+startsWithDash "${1}" && [[ ${1//-/} = 'k' ]] && KEEP=true && shift
 
 [[ ${SHLVL} -gt 1 ]] && source ~/bin/.functions
 
-SCRIPTNAME="$(basename $0)"
+SCRIPTNAME="${0##*/}"
+SCRIPTNAME2="${SCRIPTNAME//-/_}"
 
-CURR_SHELL_VARS=${${3}:-${SHELL_VARS}}
+CURR_SHELL_VARS="${SHELL_VARS}${SCRIPTNAME2//addvar/}"
 # add alias like
 # alias addvar='source addvar'
 
@@ -24,7 +28,9 @@ _addvar() {
     else
         PNAME="${1//-/_}"
         PNAME=$(uppercase ${PNAME})
-        PVALUE="${2}"
+#        PVALUE="${2}"
+        PVALUE="${2:-$(pbpaste)}" 
+        [[ $# -eq 1 ]] && startsWith $PVALUE '"' && endsWith $PVALUE '"' && PVALUE=${PVALUE[2,-2]}
         ! string_contains $PVALUE "(" && ! startsWith $PVALUE '"' && ! endsWith $PVALUE '"' && PVALUE=${PVALUE// /\\ }
     fi
 
@@ -32,8 +38,20 @@ _addvar() {
 
     [[ "$LASTCHAR" = "+" ]] && SZ_EXPORT=''
 
-    echo "${SZ_EXPORT}${PNAME}=${QTS}${PVALUE//\\/}${QTS}" >> $CURR_SHELL_VARS
-    source $CURR_SHELL_VARS
+    if ${KEEP} 
+    then 
+        echo "${SZ_EXPORT}${PNAME}=${QTS}${PVALUE}${QTS}" >> $CURR_SHELL_VARS
+    else
+        echo "${SZ_EXPORT}${PNAME}=${QTS}${PVALUE//\\/}${QTS}" >> $CURR_SHELL_VARS
+    fi
+
+    #   echo "${SZ_EXPORT}${PNAME}=${QTS}${PVALUE//\\/}${QTS}" >> $CURR_SHELL_VARS
+
+    ARR_SHA512=($(sha512sum "${CURR_SHELL_VARS}"))
+    PATH2SHA512="${TMPDIR}/$(filename ${CURR_SHELL_VARS//\./})"
+    echo ${ARR_SHA512[1]} > ${PATH2SHA512}
+
+#    source $CURR_SHELL_VARS
 }
 
 _addvar ${@}

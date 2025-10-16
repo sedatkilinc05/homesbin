@@ -1,5 +1,6 @@
 #!/bin/zsh
 
+POSTFIX=''
 SCRIPT="${0##*/}" 
 
 SCRIPT="${SCRIPT/vars/}" 

@@ -1,4 +1,7 @@
 #!/bin/zsh
+
+ARROWLR=${ARROWLR:-'⇤⇇⟽⟻↤⟵⥢⇠⇽⇦⟸⇐⇒⟹⇨⇾⇢⥤⟶↦⟼⟾⇉⇥'} # defined in ${SHELL_VARS}. Assignment just for standalone-purpose
+
 OPTS=()
 TMPINPUT="${1}"
 

@@ -1,3 +1,5 @@
+#!/usr/bin/env gcc
+
 //usr/bin/clang "$0" && exec ./a.out "$@"
 //#### !/usr/bin/env clang "$0" && exec ./a.out "$@"
 //### # !/usr/bin/env clang
