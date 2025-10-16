@@ -1,0 +1,12 @@
+#!/bin/zsh
+
+
+_arrrev () {
+	CURR_ARR=($(get-stdin &)) 
+	[[ $#@ -gt 0 ]] && CURR_ARR=(${@}) 
+	for idx in {$#CURR_ARR..1}
+	do
+		echo $CURR_ARR[${idx}]
+	done
+}
+_arrrev ${@}
