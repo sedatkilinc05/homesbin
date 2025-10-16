@@ -1,0 +1,22 @@
+#!/bin/zsh
+
+
+_checkdups () {
+	[[ -z ${IFS_PREV} ]] && IFS_PREV=() 
+	IFS_PREV+=${IFS} 
+	IFS=${DELIMITER_ENDL} 
+	arrFiles=($(ls -1S "${1:-.}/"*)) 
+	arr2delete=() 
+	for idx in {1..$#arrFiles}
+	do
+		[[ $idx -lt 2 ]] && continue
+		f1=$(sha256sum ${arrFiles[$(($idx-1))]} | grep -oE '^\S+ ') 
+		f2=$(sha256sum ${arrFiles[$(($idx))]} | grep -oE '^\S+ ') 
+		[[ ${f1} = ${f2} ]] && arr2delete+=${idx} 
+	done
+	for idx in $arr2delete
+	do
+		trash "${arrFiles[${idx}]}" > /dev/null
+	done
+}
+_checkdups ${@}
