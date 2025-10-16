@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_ffmpeg-merge-av () {
+	ffmpeg -y -loglevel "repeat+info" -i "file:${1}" -i "file:${2}" -c copy -map "0:v:0" -map "1:a:0" -movflags "+faststart" "file:${3}"
+}
+_ffmpeg-merge-av ${@}
