@@ -2,6 +2,6 @@
 
 
 _vars-all () {
-	set | grep --color=auto --color=auto "${1}"
+	set | grep --color=auto "${1}"
 }
 _vars-all ${@}

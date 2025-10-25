@@ -1,3 +1,1 @@
-#!/bin/zsh
-
-open -a /Applications/Safari.app "${@}"
+.generic-browser

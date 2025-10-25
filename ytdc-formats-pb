@@ -6,7 +6,7 @@ header() {
 
 _ytdc-formats-pb () {
 	yt-dlp --no-mark-watched --no-check-certificate --list-formats $(pbpaste)
-    VIDEO_ID=$(pbpaste | cut -d '=' -f2)
+    VIDEO_ID=$(pbpaste | rev | cut -d '/' -f1 | cut -d '=' -f1 | rev)
     OUTPUT_YT_FILE="${OUTPUT_YT}/list-formats•[${VIDEO_ID}].txt"
     header "$(pbpaste)" > ${OUTPUT_YT_FILE}
 	yt-dlp --no-mark-watched --no-check-certificate --list-formats $(pbpaste) >> ${OUTPUT_YT_FILE}

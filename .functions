@@ -1503,16 +1503,16 @@ get-all-function-names () {
 	} | grep --color=auto -oE '^\S*\s{0,1}\(\)'
 }
 
-lowercase-all-file-ext () {
-	for i in *
-	do
-		EXT=$(fileext $i) 
-		EXT=$(lowercase $EXT) 
-		ROOT=$(fileroot $i) 
-		echo "$i -> ${ROOT}.${EXT}"
-		mv -i -f "${i}" "${ROOT}.${EXT}"
-	done
-}
+#lowercase-all-file-ext () {
+#	for i in *
+#	do
+#		EXT=$(fileext $i) 
+#		EXT=$(lowercase $EXT) 
+#		ROOT=$(fileroot $i) 
+#		echo "$i -> ${ROOT}.${EXT}"
+#		mv -i -f "${i}" "${ROOT}.${EXT}"
+#	done
+#}
 
 getNthDirectory () {
 	_usage "${0}" "${#}" 2 "<path2folder>" "Argument missing.\n 1st parameter Path to folder.\n 2nd parameter number \nGet n-th directory" || return 1
