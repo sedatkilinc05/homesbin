@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+#[[ -n ${ECKO_COMBO} ]] || export ECKO_COMBO=(161 170)
+
+#ECKO_COMBO=($(ecko-combo))
+#. ecko-combo
+#cat ${BIN}/.ecko_combo
+#echo "ECKO_COMBO=$ECKO_COMBO"
+
+
+_duuu () {
+    . ecko-combo
+    . ecko-combo
+	ecko fsdfd  $ECKO_COMBO
+}
+_duuu ${@}

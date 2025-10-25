@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_milksay () {
+	cowsay -c milk -t "${1:-www.fickt-euch-alle.de}"
+}
+_milksay ${@}

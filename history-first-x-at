@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_history-first-x-at () {
+	history | head -n ${2} | tail -n ${1} | sed -E "s/${REGEX_HISTORY_PROLOG_DATE_TIME}//g"
+}
+_history-first-x-at ${@}

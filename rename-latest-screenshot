@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_rename-latest-screenshot () {
+	rename "$(path-latest-screenshot)" ${1}
+}
+_rename-latest-screenshot ${@}

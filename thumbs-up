@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+
+_thumbs-up () {
+	ecko "      " 231 160
+	ecko "  ${_TU1}  " 231 160
+	ecko "      " 231 160
+}
+_thumbs-up ${@}

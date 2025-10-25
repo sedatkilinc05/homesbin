@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+VERBOSE=false
+
+_check-ext-case () {
+	[[ ${1} = '-v' ]] && VERBOSE=true && shift
+	for f in "${1:-.}"/*.*
+	do
+		CURR_EXT=$(fileext ${f})
+		${VERBOSE} && {
+			echo
+			echo ${CURR_EXT}
+			echo -n "\t${f}"
+		}
+		[[ $(charCode ${CURR_EXT[1]}) -lt 91 ]] && {
+			${VERBOSE} && ecko -n " ${_TU1} " 231 160 || ecko " ${_TU1} ${f} " 231 160
+		}
+	done
+}
+
+_check-ext-case ${@}

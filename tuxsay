@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_tuxsay () {
+	cowsay -c tux -t "${1:-www.fickt-euch-alle.de}"
+}
+_tuxsay ${@}

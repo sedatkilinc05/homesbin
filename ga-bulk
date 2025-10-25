@@ -1,0 +1,13 @@
+#!/bin/zsh
+
+FC=161
+BC=179
+
+_ga-bulk () {
+	for f in $(git status | grep -E "${1:-modified}" | sed -E 's/[ ]*modified:[ ]*//g')
+	do
+		git add "${f}"
+        ecko " ${f} added " $((FC++)) $((BC--))
+	done
+}
+_ga-bulk ${@}

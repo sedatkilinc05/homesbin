@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_monkeys-pb () {
+	monkeys -n | pbcopy
+}
+_monkeys-pb ${@}

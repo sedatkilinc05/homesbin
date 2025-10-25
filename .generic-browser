@@ -1,0 +1,20 @@
+#!/bin/zsh
+
+SCRIPT="${0##*/}"
+BROWSER=$(capitalcase ${SCRIPT//[_-]/ })
+
+[[ -z ${IFS_PREV} ]] && IFS_PREV=()
+IFS_PREV+=${IFS};
+IFS=${DELIMITER_ENDL}
+
+#INPUT_STDIN
+. input-stdin.sh
+
+ecko "BROWSER=$BROWSER" 112 10
+ecko "$ARROWS[1] ${INPUT_STDIN}\n$SHLVL" 1 10
+
+[[ -n "${INPUT_STDIN}" ]] && URL="${INPUT_STDIN}" || URL="${1}"
+
+ecko "URL = ${URL}" 10 1
+
+open -a /Applications/${BROWSER}.app "${URL}"

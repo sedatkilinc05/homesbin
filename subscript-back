@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_subscript-back () {
+	echo "${1}" | tr "$(echo -n ${SUBSCRIPT_LEFT_PARANTHESIS}${SUBSCRIPT_RIGHT_PARANTHESIS}${SUB_DIGITS})" "()1234567890"
+}
+_subscript-back ${@}

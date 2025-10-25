@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_pigsay () {
+	cowsay -c pig -t "${1:-www.fickt-euch-alle.de}"
+}
+_pigsay ${@}

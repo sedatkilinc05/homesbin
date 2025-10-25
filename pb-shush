@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_pb-shush () {
+	shush | pbcopy
+}
+_pb-shush ${@}

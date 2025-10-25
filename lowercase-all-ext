@@ -1,0 +1,25 @@
+#!/bin/zsh
+
+VERBOSE=false
+
+_lowercase-all-ext () {
+	[[ ${1} = '-v' ]] && VERBOSE=true
+	for f in *.*
+	do
+		CURR_EXT=$(fileext $f)
+		echo -n ${CURR_EXT}
+		[[ $(charCode ${CURR_EXT[1]}) -lt 91 ]] && {
+            NEWFILENAME="$(fileroot $f).$(lowercase ${CURR_EXT})"
+			${VERBOSE} && {
+                echo
+				thumbs-up
+				ecko " ${f} " 160 231
+				ecko " ➔ ${NEWFILENAME} " 231 160
+			}
+			mv "${f}" "${NEWFILENAME}"
+		}
+		echo "	$f"
+	done
+}
+
+_lowercase-all-ext ${@}

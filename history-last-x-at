@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_history-last-x-at () {
+	history | tail -n ${2:-${1}} | head -n ${1}
+}
+_history-last-x-at ${@}

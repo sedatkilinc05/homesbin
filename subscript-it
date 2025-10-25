@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+[[ $# -eq 0 ]] && echo 'subscript-it "\2xC + \3x\H2 = C2H6"' && exit 0
+
+_subscript-it () {
+	echo "${1}" | tr "()1234567890" "$(echo -n ${SUBSCRIPT_LEFT_PARANTHESIS}${SUBSCRIPT_RIGHT_PARANTHESIS}${SUB_DIGITS})"
+}
+
+_handle-escapes() {
+     SUBSCRIPTED=$(_subscript-it "${1}")
+     ARR_ESCAPED=($(echo $SUBSCRIPTED | grep -oE '\\.{1}'))
+
+     for A in ${ARR_ESCAPED[@]}
+     do
+         B=$(subscript-back ${A})
+         SUBSCRIPTED=$(echo $SUBSCRIPTED | sed -E "s/\\${A}/${B/\\/}/g")
+     done
+     echo ${SUBSCRIPTED}
+}
+
+_handle-escapes "${1}"

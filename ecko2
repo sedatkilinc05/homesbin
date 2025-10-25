@@ -1,0 +1,19 @@
+#!/bin/zsh
+
+OPTS=()
+
+#[[ -n ${ECKO_COMBO} ]] || export ECKO_COMBO=(161 170)
+. ecko-combo
+
+startsWithDash ${1} && OPTS+="${1}" && shift
+
+_ecko2 () {
+    for txt in ${@}
+    do
+        ECKO_COMBO=($(echo $ECKO_COMBO | arrrev)) 
+
+        . ecko-combo
+        ecko ${OPTS} "${txt}" $ECKO_COMBO
+    done
+}
+_ecko2 ${@}

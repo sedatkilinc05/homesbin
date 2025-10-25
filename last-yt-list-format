@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_last-yt-list-format () {
+	cat $(ls -Ut $OUTPUT_YT/* | head -n 1)
+}
+_last-yt-list-format ${@}

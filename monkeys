@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_monkeys () {
+	echo ${1} ${MONKEYS}
+}
+_monkeys ${@}

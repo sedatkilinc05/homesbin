@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+
+_eckol () {
+	COND=${1} 
+	TEXT="${2}" 
+	shift 2
+	ecko -b "${TEXT}" $(isEven ${COND} && echo ${@} | arrrev || (echo ${@}))
+}
+_eckol ${@}

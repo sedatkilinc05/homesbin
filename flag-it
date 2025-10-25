@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+OPT=()
+[[ ${#} -gt 0 ]] && startsWithDash ${1} && OPTS+="${1}" && shift
+
+_flag-it () {
+	SZFLAG=$(echo ${1:-TR} | uppercase) 
+	ecko ${OPTS} " ${SZFLAG} $(flag -n ${SZFLAG}) ${SZFLAG} " ${2:-160} ${3:-231}
+}
+_flag-it ${@}

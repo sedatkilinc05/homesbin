@@ -1,0 +1,9 @@
+#!/bin/zsh
+
+_lastest-screenshot () {
+        FILENAME_SCREENSHOT="$(ls -1Ut ${SCREENSHOTS} | head -n 1)"
+        PATH_SCREENSHOT="${SCREENSHOTS}/${FILENAME_SCREENSHOT}"
+        ecko ${PATH_SCREENSHOT} 161 116
+        imgcat "${PATH_SCREENSHOT}"
+}
+_lastest-screenshot ${@}

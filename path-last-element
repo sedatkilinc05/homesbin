@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+SZ_PATH="$(pbpaste)"
+
+echo "${SZ_PATH##*/}"

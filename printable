@@ -1,0 +1,15 @@
+#!/usr/bin/env python3
+
+import os, sys;
+
+def isprintable(b: bytes) -> bool:
+     return all(0x20 <= c < 0x7f for c in b)
+
+#print(sys.argv[1]);
+
+pByte=bytes(sys.argv[1].encode())
+
+if isprintable(pByte):
+    print("Yes");
+else:
+    print("No");

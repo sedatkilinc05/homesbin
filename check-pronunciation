@@ -1,0 +1,14 @@
+#!/bin/zsh
+
+
+_check-pronunciation () {
+	IDX=1 
+	for v in $(cat say-voices-EN-noduplicates.csv)
+	do
+		echo $v
+		cat say-voices-EN-countries.csv | head -n ${IDX} | tail -n 1
+		say -v $v "${1}"
+		((IDX++))
+	done
+}
+_check-pronunciation ${@}

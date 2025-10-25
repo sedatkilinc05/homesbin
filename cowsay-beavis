@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_beavissay () {
+	cowsay -c beavis -t "${1:-www.fickt-euch-alle.de}"
+}
+_beavissay ${@}

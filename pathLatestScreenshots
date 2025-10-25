@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+IFS=${DELIMITER_ENDL}
+
+[[ -n ${ECKO_COMBO} ]] || ECKO_COMBO=(161 179)
+
+_pathLatestScreenshots () {
+	i=-1 
+	for x in $(path-latest-screenshot ${1})
+	do
+		ecko $x $ECKO_COMBO[$((${i}))] $ECKO_COMBO[$((-1*${i}))]
+		i=$(($i*-1)) 
+	done
+}
+_pathLatestScreenshots ${@}

@@ -1,0 +1,21 @@
+#!/bin/zsh
+
+[[ $# -eq 0 ]] && echo 'superscript-it "x2+\2xy+y2=\(x+y\)2"' && exit 0
+
+_superscript-it () {
+	echo "${1}" | tr "()1234567890" "$(echo -n ${SUPERSCRIPT_LEFT_PARANTHESIS}${SUPERSCRIPT_RIGHT_PARANTHESIS}${SUPER_DIGITS})"
+}
+
+_handle-escapes() {
+    SUPERSCRIPTED=$(_superscript-it "${1}")
+    ARR_ESCAPED=($(echo $SUPERSCRIPTED | grep -oE '\\.{1}'))
+    
+    for A in ${ARR_ESCAPED[@]}
+    do 
+        B=$(superscript-back ${A})
+        SUPERSCRIPTED=$(echo $SUPERSCRIPTED | sed -E "s/\\${A}/${B/\\/}/g")
+    done
+    echo ${SUPERSCRIPTED}
+}
+
+_handle-escapes "${1}"

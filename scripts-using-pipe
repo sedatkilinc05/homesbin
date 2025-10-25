@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_scripts-using-pipe () {
+	grep ${GREP_EXCLUDE_DIR_NODE_MODULES} ${GREP_EXCLUDE_DIR_GIT} -ril INPUT_PIPE $BIN
+}
+_scripts-using-pipe ${@}

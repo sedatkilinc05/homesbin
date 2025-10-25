@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_shush () {
+	echo -n "${CHAR_EMO_PSST}"
+}
+_shush

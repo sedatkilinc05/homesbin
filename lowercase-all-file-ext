@@ -1,0 +1,34 @@
+#!/bin/zsh
+
+VERBOSE=false
+
+verbose-cmd() {
+    echo "${1} ➔ ${2}"
+    mv "${1}" "${2}"
+}
+
+nonverbose-cmd() {
+    #echo "mv \"${1}\" \"${2}\""
+    mv "${1}" "${2}"
+}
+
+CMD=nonverbose-cmd
+
+_lowercase-all-file-ext () {
+    [[ ${1} = '-v' ]] && VERBOSE=true && shift
+    ${VERBOSE} && CMD=verbose-cmd
+for el in ${@:-.}
+do
+	for i in "${el}/"*.*
+	do
+		EXT=$(fileext ${i} | lowercase) 
+		#EXT=$(lowercase ${EXT}) 
+		ROOT=$(fileroot ${i}) 
+        NEWPATH="$(dirname ${i})/${ROOT}.${EXT}"
+        ${CMD} "${i}" "${NEWPATH}"
+#        ${VERBOSE} && ecko2 "${i} ➔ ${NEWPATH}"
+#		#mv "${i}" "${NEWPATH}"
+	done
+done
+}
+_lowercase-all-file-ext ${@}

@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_superscript-back () {
+	echo "${1}" | tr "$(echo -n ${SUPERSCRIPT_LEFT_PARANTHESIS}${SUPERSCRIPT_RIGHT_PARANTHESIS}${SUPER_DIGITS})" "()1234567890"
+}
+_superscript-back ${@}

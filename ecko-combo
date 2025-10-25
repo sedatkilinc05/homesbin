@@ -1,0 +1,5 @@
+#!/bin/zsh
+
+
+	[[ -n ${ECKO_COMBO} ]] && echo $ECKO_COMBO > ${BIN}/.ecko_combo
+	ECKO_COMBO=($(cat ${BIN}/.ecko_combo | arrrev)) 
