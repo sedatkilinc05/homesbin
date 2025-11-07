@@ -1,31 +1,32 @@
 #!/bin/zsh
 
-#${XX//[^a-z]/ }
+ORGIFS="${IFS}"
 
-if [[ ${#} -gt 0 ]]
-then
-    SZ_INPUT="${1}"
-else
-    INPUT_PIPE="$(cat < /dev/stdin)"
-    [[ -n ${INPUT_PIPE} ]] && SZ_INPUT="${INPUT_PIPE}"
-fi
+IFS="${DELIMITER_ENDL}"
 
-#ARRINPUT=($(echo ${SZ_INPUT//[^a-z]/ }))
-ARRINPUT=($(echo ${SZ_INPUT}))
-ARRSEP=($(echo ${SZ_INPUT} | grep -oE '[^a-zA-Z]'))
+INPUT_STDIN=($(get-stdin &))
 
-SZ_OUTPUT=""
+_capitalcase_ () {
+	SZ_OUTPUT='' 
+    SEP="${2:- }"
+    SEP_LENGTH="${#2}"
+    ((SEP_LENGTH++))
+    
+    IFS="${ORGIFS}"
 
-_capitalcase () {
-	echo -n $(uppercase ${1[1]})
-	lowercase "${1[2,-1]}"
+    SZ_INPUT="$(echo "${1}" | sed -E 's/[^a-zA-Z]/ /g')"
+    ARR_TMP=($(echo "${SZ_INPUT}")) 
+	
+    for w in ${ARR_TMP}
+	do
+		SZ_OUTPUT+="${w[1]:u}${w[2,-1]}${SEP}" 
+	done
+	echo ${SZ_OUTPUT[1,-${SEP_LENGTH}]}
 }
-CNT=1
-for EL in ${ARRINPUT}
-do
-    SZ_OUTPUT+=$(_capitalcase ${EL})
-    [[ ${CNT} -lt ${#ARRINPUT} ]] && SZ_OUTPUT+=${ARRSEP[${CNT}]:- }
-    ((CNT++))
-done
 
-echo ${SZ_OUTPUT}
+if [[ -n ${INPUT_STDIN} ]]
+then
+    _capitalcase_ ${INPUT_STDIN} ${@}
+else
+    _capitalcase_  ${@}
+fi
