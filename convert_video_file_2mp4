@@ -1,5 +1,7 @@
 #!/bin/bash
 
-ffmpeg -strict -2 -i $@  -c copy $(fileroot $@).mp4
+#TARGET_FILE="$(fileroot "${1}").mp4"
+
+ffmpeg -strict -2 -i "${1}"  -c copy "$(fileroot ${1}).${2:-mp4}"
 
 
