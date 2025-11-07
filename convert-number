@@ -13,6 +13,7 @@ _convert-number () {
 	startsWithDash ${1} && [[ ${1/-/} = 'f' ]] && FILLER=${2} && shift 2
 	startsWithDash ${1} && [[ ${1/-/} = 'fc' ]] && DIGITS=${2} && shift 2
 	startsWithDash ${1} && [[ ${1/-/} = 'v' ]] && VEBOSE_OUTPUT="%${VO_DIGITS}d ➔ "  && shift
+	startsWithDash ${1} && [[ ${1/-/} = 'np' ]] && PREFIX=''  && shift
 	for VALUE in ${@}
 	do
 		perl -e "printf \"${VEBOSE_OUTPUT}${PREFIX}%${FILLER}${DIGITS}${NF}${NL}\", ${VALUE}, ${VALUE}"
