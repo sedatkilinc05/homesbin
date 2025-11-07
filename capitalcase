@@ -10,8 +10,7 @@ _capitalcase_ () {
 	SZ_OUTPUT='' 
     SEP="${2:- }"
     SEP_LENGTH="${#2}"
-    ((SEP_LENGTH++))
-    
+    [[ ${SEP_LENGTH} -eq 0 ]] && ((SEP_LENGTH+=2)) || ((SEP_LENGTH++))
     IFS="${ORGIFS}"
 
     SZ_INPUT="$(echo "${1}" | sed -E 's/[^a-zA-Z]/ /g')"

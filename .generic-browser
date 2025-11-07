@@ -1,20 +1,25 @@
 #!/bin/zsh
 
+VERBOSE=false
+
+ORGIFS="${IFS}"
+IFS="${DELIMITER_ENDL}"
+
+INPUT_STDIN=($(get-stdin &))
+
 SCRIPT="${0##*/}"
 BROWSER=$(capitalcase ${SCRIPT//[_-]/ })
 
-[[ -z ${IFS_PREV} ]] && IFS_PREV=()
-IFS_PREV+=${IFS};
-IFS=${DELIMITER_ENDL}
+[[ $# -gt 0 ]] &&  startsWithDash "${1}" && [[ "${1}" = '-v' ]] && { VERBOSE=true; shift }
 
-#INPUT_STDIN
-. input-stdin.sh
-
-ecko "BROWSER=$BROWSER" 112 10
-ecko "$ARROWS[1] ${INPUT_STDIN}\n$SHLVL" 1 10
 
 [[ -n "${INPUT_STDIN}" ]] && URL="${INPUT_STDIN}" || URL="${1}"
 
-ecko "URL = ${URL}" 10 1
+if ${VERBOSE}
+then
+    ecko "BROWSER=$BROWSER" 15 88
+    ecko "\$SHLVL ${ARROWS[1]} $SHLVL" 88 15
+    ecko "URL = ${URL}" 18 118
+fi
 
 open -a /Applications/${BROWSER}.app "${URL}"
