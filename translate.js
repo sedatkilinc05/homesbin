@@ -6,10 +6,10 @@ var script = process.argv.shift();
 
 var text = process.argv.shift();
 var text = encodeURIComponent(text)
-var source = process.argv.shift();
-var target = process.argv.shift();
+var source = process.argv.shift() || 'en';
+var target = process.argv.shift() || 'de';
 
-fetch("https://translate.googleapis.com/translate_a/single?client=gtx&dt=t&dt=bd&dt=rm&hl=en&sl="+ ((source != null) ? source : 'en') +"&tl="+ ((target != null) ? target : 'de') +"&q="+text, {
+fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&dt=t&dt=bd&dt=rm&hl=en&sl=${source}&tl=${target}&q=${text}`, {
   "headers": {
     "accept": "*/*",
     "accept-language": "en-US,en;q=0.9,de;q=0.8,tr;q=0.7,hi;q=0.6,fr;q=0.5,ru;q=0.4,fa;q=0.3,da;q=0.2,no;q=0.1,el;q=0.1,ca;q=0.1,uk;q=0.1,es;q=0.1,nl;q=0.1",
