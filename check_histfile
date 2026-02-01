@@ -1,0 +1,7 @@
+#!/bin/zsh
+
+
+_check_histfile () {
+	[[ $(cat $HISTFILE | head -n 100 | grep -oE 'CHECK_IF_TOP' | wc -l) -gt 0 ]] && save-compress-histfile
+}
+_check_histfile ${@}

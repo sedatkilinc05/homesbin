@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+
+_save-compress-histfile () {
+	#say "History file is full. Compressing and saving it in temp folder"
+    mkdir -p "${TMP}"/histfiles
+    TSX=$(($(timestamp)/1000000))
+    PATH2ARCHIVE="${TMP}/histfiles/histfile_${TSX}5XXXXX.tar.gz"
+    [[ -f "${PATH2ARCHIVE}" ]] && exit 211
+	tar -czPf "${PATH2ARCHIVE}" "${HISTFILE}"
+    HISTFILE_NEW="${TMP}/histfiles/histfile_${TSX}5XXXXX.txt"
+    cat $HISTFILE | grep -E "^:[ ]+$(($(timestamp)/1000000))[5-9]" > "${HISTFILE_NEW}"
+    cp "${HISTFILE_NEW}" "${HISTFILE}"
+    echo ": $(timestamp):0;CHECK_IF_TOP" >> $HISTFILE
+}
+_save-compress-histfile ${@}
