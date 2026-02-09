@@ -22,11 +22,6 @@ do
     fi
     [[ ${1} = '--color-step'  ]] && shift  && isNumeric "${1}" && COLOR_STEP="${1}" && shift
     [[ ${1[1]} = '-'  ]] &&  OPTS+="${1[2,-1]}" && shift
-    echo "\$#@ = $#@"
-    echo "\$@ = $@"
-    echo "OPTS = $OPTS"
-    echo "COLOR_START = $COLOR_START"
-    echo "COLOR_STEP = $COLOR_STEP"
 done
 
 CLIPBOARD="$(pbpaste)"
