@@ -1,9 +1,17 @@
 #!/bin/zsh
 
+VERBOSE=false
+IDX=0
+
+#[[ $# -gt 0 ]] && 
+startsWithDash ${1} && [[ ${1} = '-v' ]] && { VERBOSE=true; shift }
+startsWithDash ${1} && [[ ${1} = '-p' ]] && { PREFIX=${2}; shift 2 }
+
 _list-array-elements () {
 	for el in ${@}
 	do
-		echo "${el}"
+        ${VERBOSE} && echo -n "$((++IDX)) : "
+		echo "${PREFIX}${el}"
 	done
 }
 _list-array-elements ${@}
