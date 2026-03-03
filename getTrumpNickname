@@ -1,0 +1,16 @@
+#!/bin/zsh
+
+SUBST=" \\b"
+
+_getTrumpNickname () {
+    LINES=$(cat $PDF_POLITICS/_Nicknames4DonaldJDrumpf.csv | wc -l)
+	NO=$(($RANDOM % ${LINES})) 
+    ((NO++))
+	echo -n "${NO} "
+    NICKNAME="$(cat ${PDF_POLITICS}/_Nicknames4DonaldJDrumpf.csv | head -n ${NO} | tail -n 1)"
+    #| sed -E "s/ /${1:-${SUBST}}/g" | pbcopy
+#    echo "${NICKNAME}" | pbcopy
+    echo "${NICKNAME// /${${1:-${SUBST}}}}" #| pbcopy
+#	pbpaste
+}
+_getTrumpNickname ${@}
