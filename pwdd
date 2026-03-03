@@ -1,0 +1,18 @@
+#!/bin/zsh
+
+SUBST=" \\b"
+#CURR_CSV="${HOME}/.local/bin/cowsay.csv"
+CURR_CSV="./cowsay.csv"
+ARGS=()
+
+_pwdd () {
+    LINES=$(cat "${CURR_CSV}" | wc -l)
+	NO=$(($RANDOM % ${LINES})) 
+    #((NO++))
+    (( NO > 0 )) && { ARGS+='-c'; ARGS+="$(cat "${CURR_CSV}" | head -n ${NO} | tail -n 1)" }
+    ecko " $ARROWS[9] ${ARGS[-1]:-cow} says" 118 88
+    cowsay ${ARGS} -t "${PWD}"
+    #echo "${CHARACTER// /${${1:-${SUBST}}}}" #| pbcopy
+#	pbpaste
+}
+_pwdd ${@}
