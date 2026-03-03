@@ -6,12 +6,23 @@ FOUND=''
 
 startsWithDash ${1} && ! [[ -r ${1} ]] && ([[ ${1/-/} = '-quiet' ]] || [[ ${1/-/} = 'q' ]]) && { QUIET=true; shift }
 
+IFS=${DELIMITER_ENDL}
+if [[ $# -gt 1 ]]
+then
+    CONTENT="$(cat "${2}")"
+    echo $@
+    #echo $CONTENT 
+    #exit
+else
+    CONTENT="$(get-stdin &)"
+fi
+
 while [[ $FOUND = '' ]]
 do 
     ((CNTR++))
-    SZLINE="$(cat "${2}" | get-line ${CNTR})"
+    SZLINE="$(echo ${CONTENT} | get-line ${CNTR})"
     FOUND="$(echo "${SZLINE}" | grep -oE "${1}")"
 done
 echo ${CNTR}
-! ${QUIET} && [[ $FOUND != '' ]] && say -v ${CURRENT_SAY_EN:-Daniel} $(say-interactive-color cyan magenta) "${1} found at line #${CNTR} in \"${SZLINE}\"" > /dev/stdin
+! ${QUIET} && [[ $FOUND != '' ]] && say -v ${CURRENT_SAY_EN:-Daniel} $(say-interactive-color cyan magenta) "${1} found at line #${CNTR} in \"${SZLINE}\"" > /dev/stderr
 
