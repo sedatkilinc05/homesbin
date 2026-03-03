@@ -1,7 +1,0 @@
-#!/bin/zsh
-
-
-_pbfinger-left () {
-	finger-left ${1} | pbcopy
-}
-_pbfinger-left ${@}
