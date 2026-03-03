@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+SZ_INTERACTIVE_COLOR='--interactive='
+
+DO_OUTPUT=true
+
+_say-interactive-color () {
+	_interactive-color () {
+       startsWithDash ${1} && [[ ${1} = '-b' ]] && { SZ_INTERACTIVE_COLOR=''; shift } || SZ_INTERACTIVE_COLOR='--interactive='
+		
+        case ${1} in
+			(black|1) SZ_INTERACTIVE_COLOR+='black' ;;
+			(red|2) SZ_INTERACTIVE_COLOR+='red' ;;
+			(green|3) SZ_INTERACTIVE_COLOR+='green' ;;
+			(yellow|4) SZ_INTERACTIVE_COLOR+='yellow' ;;
+			(blue|5) SZ_INTERACTIVE_COLOR+='blue' ;;
+			(magenta|6) SZ_INTERACTIVE_COLOR+='magenta' ;;
+			(cyan|7) SZ_INTERACTIVE_COLOR+='cyan' ;;
+			(white|8) SZ_INTERACTIVE_COLOR+='white' ;;
+			(*) DO_OUTPUT=false
+                source retexit 7 "color index out of bounds or color name doesn't exist" ;;
+		esac
+    echo $SZ_INTERACTIVE_COLOR
+	}
+    ${DO_OUTPUT} && [[ $# -gt 1 ]] && echo "$(_interactive-color ${1})/$(_interactive-color -b ${2})" || _interactive-color ${1}
+}
+_say-interactive-color ${@}

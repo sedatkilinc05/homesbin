@@ -1,15 +1,17 @@
 #!/bin/zsh
 
+QUIET=false
 CNTR=0
 FOUND=''
+
+startsWithDash ${1} && ! [[ -r ${1} ]] && ([[ ${1/-/} = '-quiet' ]] || [[ ${1/-/} = 'q' ]]) && { QUIET=true; shift }
+
 while [[ $FOUND = '' ]]
 do 
     ((CNTR++))
     SZLINE="$(cat "${2}" | get-line ${CNTR})"
-    #echo "CNTR=${CNTR}: $SZLINE"
     FOUND="$(echo "${SZLINE}" | grep -oE "${1}")"
-    #echo "Just found ${FOUND:-'nothing yet'}. CNTR=${CNTR}"
-    #echo "${FOUND}"
 done
 echo ${CNTR}
+! ${QUIET} && [[ $FOUND != '' ]] && say -v ${CURRENT_SAY_EN:-Daniel} $(say-interactive-color cyan magenta) "${1} found at line #${CNTR} in \"${SZLINE}\"" > /dev/stdin
 
