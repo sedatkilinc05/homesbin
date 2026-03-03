@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_dragonsay () {
-	cowsay -c dragon -t "${1:-www.fickt-euch-alle.de}"
-}
-_dragonsay ${@}
+.generic-cowsay

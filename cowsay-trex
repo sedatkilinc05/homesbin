@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_trexsay () {
-	cowsay -c trex -t "${1:-www.fickt-euch-alle.de}"
-}
-_trexsay ${@}
+.generic-cowsay

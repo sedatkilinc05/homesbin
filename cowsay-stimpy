@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_stimpysay () {
-	cowsay -c stimpy -t "${1:-www.fickt-euch-alle.de}"
-}
-_stimpysay ${@}
+.generic-cowsay

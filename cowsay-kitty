@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_kittysay () {
-	cowsay -c kitty -t "${1:-www.fickt-euch-alle.de}"
-}
-_kittysay ${@}
+.generic-cowsay

@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_turkeysay () {
-	cowsay -c turkey -t "${1:-www.fickt-euch-alle.de}"
-}
-_turkeysay ${@}
+.generic-cowsay

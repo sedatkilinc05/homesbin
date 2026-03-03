@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_turtlesay () {
-	cowsay -c turtle -t "${1:-www.fickt-euch-alle.de}"
-}
-_turtlesay ${@}
+.generic-cowsay

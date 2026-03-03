@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_mikisay () {
-	cowsay -c miki -t "${1:-www.fickt-euch-alle.de}"
-}
-_mikisay ${@}
+.generic-cowsay

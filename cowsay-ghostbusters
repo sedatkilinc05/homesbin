@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_cowsay-ghostbusters () {
-	cowsay -c ghostbusters -t "${1:-www.fickt-euch-alle.de}"
-}
-_cowsay-ghostbusters ${@}
+.generic-cowsay

@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_octopussay () {
-	cowsay -c octopus -t "${1:-www.fickt-euch-alle.de}"
-}
-_octopussay ${@}
+.generic-cowsay
