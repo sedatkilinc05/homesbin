@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+CNTR=0
+FOUND=''
+while [[ $FOUND = '' ]]
+do 
+    ((CNTR++))
+    SZLINE="$(cat "${2}" | get-line ${CNTR})"
+    #echo "CNTR=${CNTR}: $SZLINE"
+    FOUND="$(echo "${SZLINE}" | grep -oE "${1}")"
+    #echo "Just found ${FOUND:-'nothing yet'}. CNTR=${CNTR}"
+    #echo "${FOUND}"
+done
+echo ${CNTR}
+
