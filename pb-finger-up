@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_pb-finger-up () {
-	finger-up ${@} | pbcopy
-}
-_pb-finger-up ${@}
+.pb-generic

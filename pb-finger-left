@@ -1,7 +1,1 @@
-#!/bin/zsh
-
-
-_pb-finger-left () {
-	finger-left ${@} | pbcopy
-}
-_pb-finger-left ${@}
+.pb-generic
