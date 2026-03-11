@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+
+_translate-webpage () {
+	SZ_URL_HEAD=${1:h} 
+	SZ_URL_TAIL=${1:t} 
+	SZ_GET="&_x_tr_sl=${3:-auto}&_x_tr_tl=${2:-en}&_x_tr_hl=de&_x_tr_pto=wapp" 
+	echo "${SZ_URL_HEAD//./-}.translate.goog/${SZ_URL_TAIL}${SZ_GET}"
+}
+_translate-webpage ${@}
