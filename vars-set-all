@@ -1,0 +1,8 @@
+#!/bin/zsh
+
+
+_vars-set-all () {
+#    LINES=$(($(set | grep ${GREP_EXCLUDE_DIRS} -E ${1} | wc -l) - 2))
+	set | grep ${GREP_EXCLUDE_DIRS} -E "${1}" # "^[^_]+[^p]+[^9]+${1}" #${1} | head -n ${LINES}
+}
+_vars-set-all ${@}

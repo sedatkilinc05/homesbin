@@ -1,0 +1,10 @@
+#!/bin/zsh
+
+DEPTH=''
+
+_find-ff () {
+    isNumeric ${@[-1]} && DEPTH=( -depth ${@[-1]} )
+    ecko "DEPTH ${ARROWS[9]} $DEPTH"
+	find ${2:-.} ! -path "*node_modules*" -name "*${1}*" ${DEPTH}
+}
+_find-ff ${@}
